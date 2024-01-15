@@ -1,22 +1,23 @@
 package com.magnetron.billing.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
+@Table(name = "person")
 public class PersonEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String lastname;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "document_type")
     private String documentType;
     private String document;
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
 }

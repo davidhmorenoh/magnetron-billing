@@ -1,44 +1,41 @@
 package com.magnetron.billing.application.controllers;
 
-import com.magnetron.billing.domain.entities.PersonEntity;
+import com.magnetron.billing.application.controllers.dtos.PersonDTO;
 import com.magnetron.billing.domain.services.PersonService;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/people")
+@AllArgsConstructor
 public class PersonController {
+
     private final PersonService personService;
 
-    public PersonController(PersonService personService) {
-        this.personService = personService;
-    }
-
     @GetMapping
-    public List<PersonEntity> getAllPeople() {
-        return personService.getAllPeople();
+    public ResponseEntity<List<PersonDTO>> getAllPersonEntities() {
+        List<PersonDTO> personDTOS = personService.getAllPersonEntities();
+        return new ResponseEntity<>(personDTOS, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PersonEntity> getPersonById(@PathVariable Long id) {
-        Optional<PersonEntity> person = personService.getPersonById(id);
-        return person.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    public ResponseEntity<PersonDTO> getPersonById(@PathVariable Long id) {
+        return personService.getPersonById(id).map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @PostMapping
-    public ResponseEntity<PersonEntity> createPerson(@RequestBody PersonEntity personEntity) {
-        PersonEntity createdPersonEntity = personService.createPerson(personEntity);
-        return new ResponseEntity<>(createdPersonEntity, HttpStatus.CREATED);
+    public ResponseEntity<PersonDTO> createPerson(@RequestBody PersonDTO personDTO) {
+        PersonDTO createdPersonDTO = personService.createPerson(personDTO);
+        return new ResponseEntity<>(createdPersonDTO, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PersonEntity> updatePerson(@PathVariable Long id, @RequestBody PersonEntity updatedPersonEntity) {
-        PersonEntity personEntity = personService.updatePerson(id, updatedPersonEntity);
-        return personEntity != null ? new ResponseEntity<>(personEntity, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<PersonDTO> updatePerson(@PathVariable Long id, @RequestBody PersonDTO updatedPersonDTO) {
+        return personService.updatePerson(id, updatedPersonDTO).map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")
