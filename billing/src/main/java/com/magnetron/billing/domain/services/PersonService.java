@@ -17,7 +17,7 @@ public class PersonService {
     private final PersonRepository personRepository;
     private final PersonMapper personMapper;
 
-    public List<PersonDTO> getAllPersonEntities() {
+    public List<PersonDTO> getAllPeople() {
         List<PersonEntity> personEntities = personRepository.findAll();
         return personMapper.toDTOList(personEntities);
     }
