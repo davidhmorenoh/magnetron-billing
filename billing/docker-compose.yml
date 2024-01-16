@@ -1,0 +1,24 @@
+version: '3'
+services:
+  spring_boot_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql_database_container
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql_database_container:33060/billing?useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: myuseradmin
+      SPRING_DATASOURCE_PASSWORD: secret
+
+  mysql_database_container:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: billing
+      MYSQL_USER: myuseradmin
+      MYSQL_PASSWORD: secret
+    volumes:
+      - ./database_script.sql:/docker-entrypoint-initrd.d/database_script.sql
