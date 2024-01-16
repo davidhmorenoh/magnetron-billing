@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "c5433d9d-d43a-40f3-9974-a49f66287380",
+		"name": "Magnetron Billing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29220266"
+	},
+	"item": [
+		{
+			"name": "People",
+			"item": [
+				{
+					"name": "Get all people",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/people"
+					},
+					"response": []
+				},
+				{
+					"name": "Get person by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/people/replaceByID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create person",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Sebastián\",\r\n    \"lastName\": \"Martinez\",\r\n    \"documentType\": \"Cédula de ciudadanía\",\r\n    \"document\": \"0987654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/people"
+					},
+					"response": []
+				},
+				{
+					"name": "Update person",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Julián\",\r\n    \"lastName\": \"Martinez\",\r\n    \"documentType\": \"Tarjeta de identidad\",\r\n    \"document\": \"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/people/replaceByID"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete person",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8082/people/replaceByID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Get all products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/products"
+					},
+					"response": []
+				},
+				{
+					"name": "Get product by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/products/replaceByID"
+					},
+					"response": []
+				},
+				{
+					"name": "Create product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Cámara digital\",\r\n    \"price\": 1000.00,\r\n    \"cost\": 800.00,\r\n    \"unitOfMeasure\": \"Unidad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/products"
+					},
+					"response": []
+				},
+				{
+					"name": "Update product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Proyector\",\r\n    \"price\": 800.00,\r\n    \"cost\": 500.00,\r\n    \"unitOfMeasure\": \"Unidad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8082/products/replaceByID"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8082/products/replaceByID"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bills",
+			"item": []
+		},
+		{
+			"name": "Views",
+			"item": [
+				{
+					"name": "Total billed per person",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/views/total-billed-per-person"
+					},
+					"response": []
+				},
+				{
+					"name": "Person buys more expensive product",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/views/person-buys-more-expensive-product"
+					},
+					"response": []
+				},
+				{
+					"name": "Products by invoiced quantity",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/views/products-by-invoiced-quantity"
+					},
+					"response": []
+				},
+				{
+					"name": "Products by utility",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/views/products-by-utility"
+					},
+					"response": []
+				},
+				{
+					"name": "Products with profit margin",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8082/views/products-with-profit-margin"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
